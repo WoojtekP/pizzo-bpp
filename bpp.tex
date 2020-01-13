@@ -1,0 +1,129 @@
+\documentclass[compress]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Warsaw}
+
+\setbeamertemplate{footline}
+
+\setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatimbox}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+\usepackage{scrextend}
+\changefontsizes{14pt}
+
+\title{BPP}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Definicja}
+\justifying
+\(L \in BPP \Leftrightarrow \) istnieje PMT \(M\) taka, że:
+\begin{itemize}
+	\item \(M\) działa w czasie wielomianowym
+	\item \(\forall x. ~ x \in L ~ Pr[M(x) = 1] \geq \frac{2}{3} \)
+	\item \(\forall x. ~ x \notin L ~ Pr[M(x) = 1] \leq \frac{1}{3} \)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\justifying
+Klasa \textbf{BPP} to klasa języków rozpoznawalnych przez probabilistyczne maszyny Turinga działające w czasie wielomianowym z prawdopodobieństwem błędu \(\frac{1}{3}\).
+\end{frame}
+
+\begin{frame}
+\justifying
+Klasa \textbf{BPP} to klasa języków rozpoznawalnych przez probabilistyczne maszyny Turinga działające w czasie wielomianowym z prawdopodobieństwem błędu \(\frac{1}{4}\).
+\end{frame}
+
+\begin{frame}
+\justifying
+Klasa \textbf{BPP} to klasa języków rozpoznawalnych przez probabilistyczne maszyny Turinga działające w czasie wielomianowym z prawdopodobieństwem błędu \(\epsilon < \frac{1}{2} \).
+\end{frame}
+
+\begin{frame}
+\frametitle{Lemat o wzmacnianiu}
+\justifying
+Niech \(\epsilon\) będzie wartością z przedziału \((0, \frac{1}{2})\). Wówczas dla dowolnego wielomianu \(p(n)\) i PMT \(M_1\) działającej w czasie wielomianowym z błędem \(\epsilon\) istnieje równoważna jej PMT \(M_2\) działająca w czasie wielomianowym z błędem \(2^{-p(n)}\)
+\end{frame}
+
+\begin{frame}
+	\frametitle{Lemat o wzmacnianiu: dowód}
+	\(M_2=\) "Dla słowa \(w\):
+	\begin{itemize}
+		\item Oblicz wartość \(k\) (wyjaśnienie później)
+		\item Wykonaj \(2k\) niezależnych symulacji maszyny \(M_1\)
+		\item Jeśli większość wyników jest akceptująca, to zaakceptuj; w przeciwnym przypadku odrzuć"
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Otwarte problemy}
+\begin{itemize}
+	\item Czy \textbf{BPP = P}?
+	\item Jaka jest relacja między \textbf{BPP} a \textbf{NP}?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Klasa RP}
+\justifying
+Klasa \textbf{RP} to klasa języków rozpoznawalnych przez PMT działające w czasie wielomianowym, które:
+\begin{itemize}
+	\item nie dają fałszywych odpowiedzi pozytywnych
+	\item z prawdopodobieństwem co najwyżej \(\frac{1}{2}\) udzielają fałszywej odpowiedzi negatywnej.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Klasa RP}
+\justifying
+\(L \in RP \Leftrightarrow \) istnieje PMT \(M\) taka, że:
+\begin{itemize}
+	\item \(M\) działa w czasie wielomianowym
+	\item \(\forall x. ~ x \in L ~ Pr[M(x) = 1] \geq \frac{1}{2} \)
+	\item \(\forall x. ~ x \notin L ~ Pr[M(x) = 1] = 0 \)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Klasa ZPP}
+\[\text{ZPP = RP} \cap \text{co-RP}\]
+Jest to klasa języków, dla których probabilistyczne maszyny Turinga nie popełniają błędu.
+\end{frame}
+
+\begin{frame}
+\frametitle{Algorytmy probabilistyczne}
+\begin{table}
+	\begin{tabular}{l | c | c}
+	& Czas działania & Poprawność\\
+	\hline \hline
+	Lax Vegas (ZPP) & probabilistyczny & pewna \\
+	\hline
+	Monte Carlo (RP) & pewny & probabilistyczna
+	\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kilka faktów:}
+\begin{itemize}
+	\item klasa \textbf{BPP} jest zamknięta na dopełnienie
+	\item \(ZPP \subseteq RP \subseteq BPP \subseteq PP\)
+	\item \(BPP \subseteq PSPACE\)
+	\item jeśli \(NP \subseteq BPP\) to \(NP=RP\)
+\end{itemize}
+\end{frame}
+
+\end{document} 
